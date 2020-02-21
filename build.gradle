@@ -17,8 +17,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group 'org.example.book'
-version '1.0-SNAPSHOT'
-
+version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
@@ -30,11 +29,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
     compile('org.projectlombok:lombok')
-    compile('org.springframework.boot:spring-boot-strater-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
     // springboot 버전에 맞춰 자동으로 JPA 관련 라이브러리들 버전 관리
     compile('com.h2database:h2')
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     // in-memory 관계형 데이터베이스 : 메모리에서 실행하기때문에 휘발성이 존재. test 용도로 존재.
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 //
 //    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
