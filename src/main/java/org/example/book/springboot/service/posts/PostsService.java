@@ -2,12 +2,16 @@ package org.example.book.springboot.service.posts;
 
 import lombok.RequiredArgsConstructor;
 import org.example.book.springboot.domain.posts.PostsRepository;
+import org.example.book.springboot.web.dto.PostsListResponseDto;
 import org.example.book.springboot.web.dto.PostsResponseDto;
 import org.example.book.springboot.web.dto.PostsSaveRequestDto;
 import org.example.book.springboot.web.dto.PostsUpdateRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.example.book.springboot.domain.posts.Posts;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -37,6 +41,17 @@ public class PostsService{
 
         return new PostsResponseDto(entity);
 
+    }
+
+    /**
+     * transactional 옵션이 추가됨. 범위는 유지하되 조회기능만 남겨두어 조회속도가 개선됨.
+     * postsRepository 결과로 넘어온 Posts 의 Stream 을 map을 통해 PostsListsReponseDto 변환 -> List 로 반환하는 메소드.
+     */
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 
 }
