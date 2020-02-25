@@ -5,7 +5,6 @@ import org.example.book.springboot.service.posts.PostsService;
 import org.example.book.springboot.web.dto.PostsResponseDto;
 import org.example.book.springboot.web.dto.PostsSaveRequestDto;
 import org.example.book.springboot.web.dto.PostsUpdateRequestDto;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
